@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InterviewerX</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+    <h1>Create Your Interview Bot</h1>
+<!-- 
+    
+Job title
+ 
+Seniority level (Intern / Junior / Mid / Senior / Lead)
+
+Role type (Frontend, Backend, Data, PM, etc.)
+
+Interview duration
+
+Interview goal (screening, deep technical, culture fit)
+
+Topics+Weitghtage (algorithms 40%, system design 30%, behavioral 30%)
+
+Evaluation Criteria (problem solving, coding style, communication)
+
+-->
+<form action = "/create-bot" method="POST" id="createBot">
+    <label for="jobTitle">Job Title:</label>
+    <input type="text" id="jobTitle" name="jobTitle" required><br><br>
+
+    <label for="seniorityLevel">Seniority Level:</label>
+    <select id="seniorityLevel" name="seniorityLevel" required>
+        <option value="Intern">Intern</option>
+        <option value="Junior">Junior</option>
+        <option value="Mid">Mid</option>
+        <option value="Senior">Senior</option>
+        <option value="Lead">Lead</option>
+    </select><br><br>
+
+    <label for="roleType">Role Type:</label>
+    <input type="text" id="roleType" name="roleType" required><br><br>
+
+    <label for="interviewGoal">Interview Goal:</label>
+    <input type="text" id="interviewGoal" name="interviewGoal" required><br><br>
+
+    <label for="topicsWeightage">Topics & Weightage:</label>
+    <input type="text" id="topicsWeightage" name="topicsWeightage" required><br><br>
+
+    <label for="evaluationCriteria">Evaluation Criteria:</label>
+    <input type="text" id="evaluationCriteria" name="evaluationCriteria" required><br><br>
+
+    <input type="submit" value="Create Bot">
+
+</form>
+</body>
+</html>

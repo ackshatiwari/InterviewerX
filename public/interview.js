@@ -72,7 +72,7 @@ document.getElementById('startInterview').addEventListener('click', async () => 
             // Display bot info
             document.getElementById('jobTitle').textContent = currentBot.jobTitle;
             document.getElementById('roleInfo').textContent = 
-                `${currentBot.seniorityLevel} ${currentBot.roleType} - ${currentBot.interviewGoal}`;
+                `${currentBot.seniorityLevel} at ${currentBot.organization || 'Company'} - Skills: ${currentBot.skills || 'Various'}`;
             
             // Start interview
             await startInterviewSession();
@@ -219,7 +219,7 @@ document.getElementById('submitAnswer').addEventListener('click', async () => {
                 data: {
                     question: currentQuestions[currentQuestionIndex].question,
                     answer: answer,
-                    jobContext: `${currentBot.jobTitle} - ${currentBot.roleType}`
+                    jobContext: `${currentBot.jobTitle} at ${currentBot.organization} - Skills: ${currentBot.skills}`
                 }
             })
         });

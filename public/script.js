@@ -3,20 +3,22 @@ const form = document.getElementById('createBot');
 if (form) {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
+        //personalizeion of bot config from form data
         const jobTitle = document.getElementById('jobTitle').value;
         const seniorityLevel = document.getElementById('seniorityLevel').value;
-        const roleType = document.getElementById('roleType').value;
-        const interviewGoal = document.getElementById('interviewGoal').value;
+        const organization = document.getElementById('organization').value;
+        const skills = document.getElementById('skills').value;
         const topicsWeightage = document.getElementById('topicsWeightage').value;
         const evaluationCriteria = document.getElementById('evaluationCriteria').value;
         const botConfig = {
             jobTitle,
             seniorityLevel,
-            roleType,
-            interviewGoal,
             topicsWeightage,
-            evaluationCriteria
+            evaluationCriteria,
+            organization,
+            skills
         };
+        //send bot config to server
         const response = await fetch('/create-bot', {
             method: 'POST',
             headers: {

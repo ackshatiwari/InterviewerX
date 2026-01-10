@@ -29,10 +29,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
+//index
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
+
+//createbot.html
 app.get('/createbot.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'createbot.html'));
 });
@@ -41,6 +43,7 @@ app.get('/interview', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'interview.html'));
 });
 
+//create bot with form data
 app.post('/create-bot', async (req, res) => {
     const botConfig = req.body;
     console.log('Received bot configuration:', botConfig);
@@ -155,8 +158,8 @@ app.post('/api/validate-code', async (req, res) => {
                 id: bot.id,
                 jobTitle: bot.jobTitle,
                 seniorityLevel: bot.seniorityLevel,
-                roleType: bot.roleType,
-                interviewGoal: bot.interviewGoal,
+                organization: bot.organization,
+                skills: bot.skills,
                 topicsWeightage: bot.topicsWeightage,
                 evaluationCriteria: bot.evaluationCriteria
             }
@@ -187,7 +190,7 @@ app.post('/api/interview-session', async (req, res) => {
                 // Generate initial questions
                 const questions = await generateInterviewQuestions(
                     bot.jobTitle || bot.job_title,
-                    bot.jobDescription || `${bot.roleType} role for ${bot.seniorityLevel} level`,
+                    bot.jobDescription || `${bot.seniorityLevel} position at ${bot.organization}. Required skills: ${bot.skills}`,
                     5
                 );
                 
@@ -219,6 +222,8 @@ app.post('/api/interview-session', async (req, res) => {
     }
 });
 
+
+//listen to server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });

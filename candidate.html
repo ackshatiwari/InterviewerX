@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>For Candidates - SmartVoice Hire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      
+      .UI {
+        min-height: 300vh;
+        display: flex;
+        flex-direction: column;
+        background-image: url("images/blue.jpg");
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+
+      .header {
+        padding: 16px 32px;
+        background: rgb(3, 4, 85);
+        color: rgb(175, 194, 255);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .logo {
+        width: 150px;
+        height: 50px;
+        object-fit: contain;
+      }
+
+      .title-block {
+        display: flex;
+        flex-direction: column;
+        font-family: 'Orbitron', sans-serif;
+      }
+
+      .title {
+        font-size: 28px;
+        line-height: 1.1;
+        margin: 0;
+      }
+
+      .subtitle {
+        font-size: 14px;
+        line-height: 1.3;
+        margin: 2px 0 0;
+        color: rgb(190, 205, 255);
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .grid {
+        flex: 1;
+        display: grid;
+        place-items: flex-start;
+        justify-content: center;
+        padding: 80px 20px;
+      }
+
+      .UI-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(12px);
+        animation: fadeUp 0.6s ease-out forwards;
+        animation-delay: 0.2s;
+      }
+
+      .Caption {
+        font-size: 60px;
+        color: rgb(190, 205, 255);
+      }
+
+      .buttons {
+        background-color: rgb(25, 45, 109);
+        color: rgb(252, 252, 255);
+        border: none;
+        height: 100px;
+        width: 400px;
+        cursor: pointer;
+        margin: 1.9vh;
+        transition: opacity 0.15s;
+        box-shadow: 5px 5px 0px rgba(24, 31, 56, 0.8);
+        font: 'Orbitron', sans-serif;
+        font-size: large;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .buttons:hover {
+        opacity: 0.8;
+      }
+
+      .button-group {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+      }
+
+      .not-button {
+        background-color: rgb(25, 45, 109);
+        color: rgb(252, 252, 255);
+        border: none;
+        height: 350px;
+        width: 250px;
+        cursor: pointer;
+        margin: 0 10px;
+        padding: 20px;
+        text-align: left;
+        transition: opacity 0.15s;
+        box-shadow: 5px 5px 0px rgba(24, 31, 56, 0.8);
+        font-family: 'Orbitron';
+        font-weight: 500;
+        font-size: medium;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      .not-button.animate {
+        animation: fadeUp 0.6s ease-out forwards;
+      }
+
+      .not-button:hover {
+        border: 2px solid rgb(124, 131, 146);
+      }
+
+      .not-button h2 {
+        border-bottom: 2px solid rgb(245, 246, 252);
+        padding-bottom: 12px;
+        margin-bottom: 12px;
+      }
+
+      /* Separate sections with dark background */
+      .dark-section {
+        background-color: rgb(20, 25, 60);
+        padding: 60px 10vw;
+        text-align: center;
+        font-family: 'Roboto', sans-serif;
+        color: rgb(245, 246, 252);
+      }
+
+      .dark-section h2 {
+        font-size: 36px;
+        color: rgb(190, 205, 255);
+        margin-bottom: 40px;
+        font-family: 'Orbitron', sans-serif;
+      }
+
+      .dark-section p {
+        font-size: 16px;
+        line-height: 1.8;
+        color: rgb(190, 205, 255);
+        margin-bottom: 20px;
+      }
+
+      .home-link {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 20px;
+        background: rgb(25, 45, 109);
+        color: rgb(252, 252, 255);
+        text-decoration: none;
+        border-radius: 5px;
+        font-family: 'Orbitron', sans-serif;
+        transition: opacity 0.15s;
+      }
+
+      .home-link:hover {
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="UI">
+      <div class="header">
+        <div class="brand">
+          <img src="images/logo.png" alt="Logo" class="logo">
+          <div class="title-block">
+            <h1 class="title">InterviewX</h1>
+            <p class="subtitle">AI‑powered voice interviews for fast, fair hiring.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- HERO SECTION (shows background) -->
+      <div class="grid">
+        <div class="UI-content">
+          <div class="Caption">
+            <p style="margin-bottom: 20px; color: rgb(225,225,225);">Let your voice do the talking</p>
+          </div>
+
+          <div style="font:'Roboto'; color:rgb(245,246,252); font-size:20px;">
+            <p>Real interviews on your schedule. No gatekeeping. Just genuine conversation.</p>
+          </div>
+
+          <div>
+            <button class="buttons">Take a Practice Interview</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- WHAT TO EXPECT SECTION (dark background) -->
+      <section class="dark-section">
+        <h2>What to Expect</h2>
+        <div class="stats-section">
+    <!-- Empty but present for JavaScript -->
+  </div>
+        <div class="button-group">
+          <button class="not-button">
+            <h2>Get the link</h2>
+            <p>Receive your interview link via email. No signup required – just open and start.</p>
+          </button>
+
+          <button class="not-button">
+            <h2>Choose your time</h2>
+            <p>Answer questions whenever you're ready. You have 24-48 hours to complete the interview.</p>
+          </button>
+
+          <button class="not-button">
+            <h2>Speak naturally</h2>
+            <p>AI listens without judgment. Be yourself. Show your personality and communication skills.</p>
+          </button>
+
+          <button class="not-button">
+            <h2>Get feedback</h2>
+            <p>See your score and key strengths highlighted. Understand how you performed.</p>
+          </button>
+        </div>
+      </section>
+
+      <!-- TIPS FOR SUCCESS SECTION (shows background) -->
+      <div class="grid">
+        <div class="UI-content">
+          <div class="Caption">
+            <p style="border-bottom: 2px solid rgb(245, 246, 252);">Tips for Success</p>
+          </div>
+
+          <div style="font:'Roboto'; color:rgb(245,246,252); font-size:18px; max-width: 800px;">
+            <p>✓ <strong>Find a quiet space</strong> – Minimal background noise helps the AI hear you clearly.</p>
+            <p>✓ <strong>Look at the camera</strong> – Make eye contact with the screen to show confidence.</p>
+            <p>✓ <strong>Take a moment to think</strong> – It's okay to pause before answering. Quality over speed.</p>
+            <p>✓ <strong>Show your personality</strong> – Be authentic. AI values genuine communication, not rehearsed answers.</p>
+            <p>✓ <strong>Speak clearly</strong> – Enunciate well. You don't need to be perfect, just understandable.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- WHY SMARTVOICE IS DIFFERENT (dark background) -->
+      <section class="dark-section">
+        <h2 >Why SmartVoice Hire is Different</h2>
+        <p>✓ No bias from appearance, accent, or background</p>
+        <p>✓ Fair evaluation based on genuine communication skills</p>
+        <p>✓ Every candidate gets an equal chance to be heard</p>
+        <p>✓ Results delivered in 24 hours</p>
+        <p>✓ Works on any device with a microphone</p>
+      </section>
+
+      <!-- FAQ SECTION (shows background) -->
+      <div class="grid">
+        <div class="UI-content">
+          <div class="Caption">
+            <p style="border-bottom: 2px solid rgb(245, 246, 252);">Frequently Asked Questions</p>
+          </div>
+
+          <div style="font:'Roboto'; color:rgb(245,246,252); font-size:18px; max-width: 800px;">
+            <p><strong>Do I need special equipment?</strong><br>No. Just a device with a microphone and internet connection.</p>
+            <p><strong>What if I mess up?</strong><br>It's okay. AI evaluates the overall quality of your answers, not perfection.</p>
+            <p><strong>How long is the interview?</strong><br>Usually 10-15 minutes depending on the number of questions.</p>
+            <p><strong>When will I hear back?</strong><br>Hiring teams review results within 24 hours and contact top candidates.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FINAL CTA SECTION (dark background) -->
+      <section class="dark-section">
+        <h2>Ready to show what you can do?</h2>
+        <button class="buttons">Take Your Interview Now</button>
+        <br>
+        <a href="homepage.html" class="home-link">← Back to Home</a>
+      </section>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>

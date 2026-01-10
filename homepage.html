@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Homepage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      
+      .UI {
+        min-height: 270vh;
+        display: flex;
+        flex-direction: column;
+        background-image: url("images/blue.jpg");
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+
+      .header {
+        padding: 16px 32px;
+        background: rgb(3, 4, 85);
+        color: rgb(175, 194, 255);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;   /* left group vs right icon */
+        gap: 16px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .logo {
+        width: 150px;
+        height: 50px;
+        object-fit: contain;
+      }
+
+      .title-block {
+        display: flex;
+        flex-direction: column;
+        font-family: 'Orbitron', sans-serif;
+        
+      }
+      @keyframes fadeUp {
+   from {
+     opacity: 0;
+     transform: translateY(12px);
+     }
+    to {
+     opacity: 1;
+      transform: translateY(0);
+        }
+  }
+
+      .title {
+        font-size: 28px;
+        line-height: 1.1;
+        margin: 0;
+      }
+
+      .subtitle {
+        font-size: 14px;
+        line-height: 1.3;
+        margin: 2px 0 0;
+        color: rgb(190, 205, 255);
+      }
+
+      .settings-btn {
+        background: transparent;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+      }
+      .settings-btn:hover {
+        border:2px solid rgb(124, 131, 146);
+      }
+
+      .settings-btn img {
+        display: block;
+      }
+
+      .grid {
+        flex: 1;
+        display: grid;
+        place-items: flex-start;
+        
+        justify-content: center;
+        padding: 80px 20px;
+      }
+
+      .UI-content {
+        display: flex;
+        flex-direction: column;
+        align-items:center ;
+        gap: 15px;
+        text-align: center;
+        opacity: 0;
+          transform: translateY(12px);
+         animation: fadeUp 0.6s ease-out forwards;
+        animation-delay: 0.2s;
+        
+      }
+
+      .Caption {
+        font-size: 60px;
+        color: rgb(190, 205, 255);
+        
+      }
+
+      .buttons {
+        background-color: rgb(25, 45, 109);
+        color: rgb(252, 252, 255);
+        border: none;
+        height: 100px;
+        width: 400px;
+        cursor: pointer;
+        margin: 1.9vh;
+        transition: opacity 0.15s;
+        box-shadow: 5px 5px 0px rgba(24, 31, 56, 0.8);
+        font: 'Orbitron', sans-serif;
+        font-size:large;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        text-decoration:none;
+      }
+
+      .buttons:hover {
+        opacity: 0.8;
+      }
+
+      .buttons:active {
+        opacity: 0.7;
+      }
+
+      
+      .title-1{
+         background-color: rgb(20, 25, 60);
+        min-height: 20vh;
+        padding: 40px 10vw;
+        opacity:1;
+        opacity:0.9;
+      }
+      .title-2{
+        background-color: rgb(20, 25, 60);
+        min-height: 30vh;
+        padding: 40px 10vw;
+        opacity:1;
+        opacity:0.9;
+        text-align:center;
+        font-family:'Roboto', sans-serif;
+        color:rgb(245,246,252);
+      }
+      .button-group{
+         display:flex;
+         justify-content:center; 
+         gap:20px;
+         flex-wrap:wrap;
+         margin-top:20px;
+      }
+      .not-button {
+  background-color: rgb(25, 45, 109);
+  color: rgb(252, 252, 255);
+  border: none;
+  height: 300px;
+  width: 250px;
+  cursor: pointer;
+  margin: 0 10px;
+  padding: 20px;
+  text-align: left;
+  transition: opacity 0.15s;
+  box-shadow: 5px 5px 0px rgba(24, 31, 56, 0.8);
+  font-family: 'Orbitron';
+  font-weight: 500;
+  font-size: medium;
+  
+  /* Start invisible */
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.not-button.animate {
+  animation: fadeUp 0.6s ease-out forwards;
+}
+
+.not-button:hover {
+  border: 2px solid rgb(124, 131, 146);
+}
+
+        
+      
+      .buttons-opp{
+        background-color: rgb(201, 206, 223);
+        color: rgb(20, 25, 60);
+        border: none;
+        height: 50px;
+        width: 200px;
+        cursor: pointer;
+        margin: 0 10px;
+        transition: opacity 0.15s;
+        box-shadow: 5px 5px 0px rgba(24, 57, 175, 0.8);
+        font: 'Roboto', sans-serif;
+        font-weight:700;
+        font-size:large;
+        margin:10vh;
+            }
+      .stats-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 40px;
+  padding: 40px 20px;
+  background: rgb(20, 25, 60);
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 48px;
+  font-weight: bold;
+  color: rgb(100, 150, 255);
+  font-family: 'Roboto Mono', monospace;
+}
+
+.stat-label {
+  font-size: 24px;
+  color: rgb(100, 150, 255);
+  font-family: 'Roboto Mono', monospace;
+  display: inline;
+  margin-left: 4px;
+}
+
+.stat-text {
+  font-size: 14px;
+  color: rgb(150, 160, 200);
+  margin-top: 8px;}
+  .home-link {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 20px;
+        background: rgb(25, 45, 109);
+        color: rgb(252, 252, 255);
+        text-decoration: none;
+        border-radius: 5px;
+        font-family: 'Orbitron', sans-serif;
+        transition: opacity 0.15s;
+      }
+
+      .home-link:hover {
+        opacity: 0.8;
+      }
+
+    </style>
+  </head>
+  <body>
+    <section class="UI">
+      <div class="header">
+        <div class="brand">
+          <img src="images/logo.png" alt="Logo" class="logo">
+
+          <div class="title-block">
+            <h1 class="title">InterviewX</h1>
+            <p class="subtitle">AI‑powered voice interviews for fast, fair hiring.</p>
+          </div>
+        </div>
+
+        <button class="settings-btn">
+          <img src="images/settings.png" width="30" height="30" alt="Settings">
+        </button>
+      </div>
+
+      <div class="grid">
+        <div class="UI-content">
+          <div class="Caption">
+            <p>Hire more, efficiently,<br>productively, and fairly</p>
+          </div>
+
+          <div class = "subtext" style="font:'Roboto'; color:rgb(245,246,252); font-size:20px;">
+            <p>Run realistic voice interviews in minutes, not weeks.</p>
+          </div>
+
+          <div>
+            <a href="hirer.html" class="buttons" >
+  <p>I'm hiring – Let's go</p>
+</a>
+
+          </div>
+
+          <div>
+            <a href="candidate.html" class="buttons">I'm a candidate – Take the interview</a>
+          </div>
+        </div>
+      </div>
+      <section class="title-1">
+              <div class="stats-section">
+  <div class="stat">
+    <div class="stat-number" data-target="20">0</div>
+    <div class="stat-label">x</div>
+    <div class="stat-text">Faster planning</div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-number" data-target="84">0</div>
+    <div class="stat-label">hrs</div>
+    <div class="stat-text">Time saved</div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-number" data-target="87">0</div>
+    <div class="stat-label">%</div>
+    <div class="stat-text">Higher Chances of Winning</div>
+  </div>
+</div>
+      </section>
+       <div class="grid">
+        <div class="UI-content">
+          <div class="Caption">
+            <p>Voice interviews that reveal what resumes can't</p>
+          </div>
+
+          <div class = "subtext" style="font:'Roboto'; color:rgb(245,246,252); font-size:20px;">
+            <p>Fair scoring. Real feedback. Built by engineers, for engineers.</p>
+          </div>
+        <div class ="button-group">
+          <div>
+            <button class="not-button">
+              <h2>Voice-recognition</h2><br>
+              Candidates speak their thoughts, not type them. You hear their real communication skills.</button>
+          </div>
+          <div>
+            <button class="not-button">
+              <h2> Smart scoring & insights</h2><br>
+              Built for startup founders, hackathon judges, and hiring managers who value speed and fairness</button>
+          </div>
+          <div>
+            <button class="not-button">
+              <h2> Create in seconds</h2><br>
+              Paste a job description. Auto-generate an interview bot. Share a link. That's it.</button>
+          </div>
+          <div>
+            <button class="not-button">
+              <h2>Smart scoring & insights</h2><br>
+              Get candidate rankings, key strengths flagged, and audio clips of their best answers in one dashboard.</button>
+          </div>
+        </div>
+          
+                 
+        </div>
+      </div>
+      <section class="title-2">
+           <h1>Works for: Campus recruiting - Internship screening - Hackathon judging - Team interviews</h1>
+           <br>
+           <p>Join 100+ hackathon organizers using SmartVoice Hire.</p>
+           <a href="homepage.html" class="home-link">← Demo Video</a>
+      </section>
+      
+   
+    </section>
+   
+    
+    <script src="script.js"></script>
+  </body>
+</html> 
+

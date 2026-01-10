@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hirer - SmartVoice Hire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+
+      .home-link {
+        display: flex;
+        padding: 10px 20px;
+        background: rgb(25, 45, 109);
+        color: rgb(252, 252, 255);
+        text-decoration: none;
+        border-radius: 5px;
+        font-family: 'Orbitron', sans-serif;
+        transition: opacity 0.15s;
+        box-shadow: 5px 5px 0px rgba(24, 31, 56, 0.8);
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+      }
+
+      .home-link:hover {
+        opacity: 0.8;
+      }
+
+      .back-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(20, 25, 60);
+        padding: 60px 20px;
+        min-height: 20vh;
+      }
+
+      .UI {
+        min-height: 200vh;
+        display: flex;
+        flex-direction: column;
+        background-image: url("images/blue2.png");
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+
+      .header {
+        padding: 16px 32px;
+        background: rgb(3, 4, 85);
+        color: rgb(175, 194, 255);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .logo {
+        width: 150px;
+        height: 50px;
+        object-fit: contain;
+      }
+
+      .title-block {
+        display: flex;
+        flex-direction: column;
+        font-family: 'Orbitron', sans-serif;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .title {
+        font-size: 28px;
+        line-height: 1.1;
+        margin: 0;
+      }
+
+      .subtitle {
+        font-size: 14px;
+        line-height: 1.3;
+        margin: 2px 0 0;
+        color: rgb(190, 205, 255);
+      }
+
+      .settings-btn {
+        background: transparent;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+      }
+
+      .settings-btn:hover {
+        border: 2px solid rgb(124, 131, 146);
+      }
+
+      .settings-btn img {
+        display: block;
+      }
+
+      .grid {
+        flex: 1;
+        display: grid;
+        place-items: flex-start;
+        justify-content: center;
+        padding: 80px 20px;
+      }
+
+      .UI-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(12px);
+        animation: fadeUp 0.6s ease-out forwards;
+        animation-delay: 0.2s;
+      }
+
+      .Caption {
+        font-size: 60px;
+        color: rgb(190, 205, 255);
+      }
+
+      .buttons {
+        background-color: rgb(25, 45, 109);
+        color: rgb(252, 252, 255);
+        border: none;
+        height: 100px;
+        width: 400px;
+        cursor: pointer;
+        margin: 1.9vh;
+        transition: opacity 0.15s;
+        box-shadow: 5px 5px 0px rgba(24, 31, 56, 0.8);
+        font: 'Orbitron', sans-serif;
+        font-size: large;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .buttons:hover {
+        opacity: 0.8;
+      }
+
+      .buttons:active {
+        opacity: 0.7;
+      }
+
+      .button-group {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+      }
+
+      .not-button {
+        background-color: rgb(25, 45, 109);
+        color: rgb(252, 252, 255);
+        border: none;
+        height: 300px;
+        width: 250px;
+        cursor: pointer;
+        margin: 0 10px;
+        padding: 20px;
+        text-align: left;
+        transition: opacity 0.15s;
+        box-shadow: 5px 5px 0px rgba(24, 31, 56, 0.8);
+        font-family: 'Orbitron';
+        font-weight: 500;
+        font-size: medium;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      .not-button.animate {
+        animation: fadeUp 0.6s ease-out forwards;
+      }
+
+      .not-button:hover {
+        border: 2px solid rgb(124, 131, 146);
+      }
+
+      .not-button h2 {
+        border-bottom: 2px solid rgb(245, 246, 252);
+        padding-bottom: 12px;
+        margin-bottom: 12px;
+      }
+
+      .not-button p {
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      .how-it-works {
+        background: rgb(20, 25, 60);
+        padding: 60px 20px;
+        text-align: center;
+        min-height: 30vh;
+      }
+
+      .how-it-works h2 {
+        font-size: 36px;
+        color: rgb(190, 205, 255);
+        margin-bottom: 40px;
+        font-family: 'Orbitron', sans-serif;
+      }
+
+      .stats-section {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 40px;
+        padding: 40px 20px;
+        background: rgb(20, 25, 60);
+      }
+    </style>
+  </head>
+  <body>
+    <section class="UI">
+      <div class="header">
+        <div class="brand">
+          <img src="images/logo.png" alt="Logo" class="logo">
+          <div class="title-block">
+            <h1 class="title">InterviewX</h1>
+            <p class="subtitle">AI‑powered voice interviews for fast, fair hiring.</p>
+          </div>
+        </div>
+
+        <button class="settings-btn">
+          <img src="images/settings.png" width="30" height="30" alt="Settings">
+        </button>
+      </div>
+
+      <!-- HERO SECTION -->
+      <div class="grid">
+        <div class="UI-content">
+          <div class="Caption">
+            <p>Screen Candidates 20x times faster</p>
+          </div>
+
+          <div class="subtext" style="font:'Roboto'; color:rgb(245,246,252); font-size:20px;">
+            <p>Run realistic voice interviews in minutes, not weeks.</p>
+          </div>
+
+          <div>
+            <button class="buttons">Create Your First Interview</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOW IT WORKS SECTION -->
+      <section class="how-it-works">
+        <h2>How It Works</h2>
+        
+        <svg width="100%" height="400" viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg">
+          <!-- Background -->
+          <rect width="1000" height="400" fill="rgb(25, 45, 109)"/>
+          
+          <!-- Step 1: Image -->
+          <image x="40" y="40" width="120" height="120" href="images/step-1.png"/>
+          <text x="100" y="200" text-anchor="middle" fill="rgb(190, 205, 255)" font-size="14" font-weight="bold">Describe the role</text>
+          <text x="100" y="220" text-anchor="middle" fill="rgb(150, 160, 200)" font-size="12">Enter job title,</text>
+          <text x="100" y="235" text-anchor="middle" fill="rgb(150, 160, 200)" font-size="12">experience level</text>
+          
+          <!-- Arrow 1 -->
+          <line x1="170" y1="100" x2="230" y2="100" stroke="rgb(100, 150, 255)" stroke-width="3"/>
+          <polygon points="230,100 220,95 220,105" fill="rgb(100, 150, 255)"/>
+          
+          <!-- Step 2: Image -->
+          <image x="290" y="40" width="120" height="120" href="images/step-2.png"/>
+          <text x="350" y="200" text-anchor="middle" fill="rgb(190, 205, 255)" font-size="14" font-weight="bold">AI generates questions</text>
+          <text x="350" y="220" text-anchor="middle" fill="rgb(150, 160, 200)" font-size="12">Smart interviewer</text>
+          <text x="350" y="235" text-anchor="middle" fill="rgb(150, 160, 200)" font-size="12">auto-created</text>
+          
+          <!-- Arrow 2 -->
+          <line x1="420" y1="100" x2="480" y2="100" stroke="rgb(100, 150, 255)" stroke-width="3"/>
+          <polygon points="480,100 470,95 470,105" fill="rgb(100, 150, 255)"/>
+          
+          <!-- Step 3: Image -->
+          <image x="540" y="40" width="120" height="120" href="images/step-3.png"/>
+          <text x="600" y="200" text-anchor="middle" fill="rgb(190, 205, 255)" font-size="14" font-weight="bold">Share & collect</text>
+          <text x="600" y="220" text-anchor="middle" fill="rgb(150, 160, 200)" font-size="12">Candidates answer</text>
+          <text x="600" y="235" text-anchor="middle" fill="rgb(150, 160, 200)" font-size="12">on their own time</text>
+          
+          <!-- Arrow 3 -->
+          <line x1="670" y1="100" x2="730" y2="100" stroke="rgb(100, 150, 255)" stroke-width="3"/>
+          <polygon points="730,100 720,95 720,105" fill="rgb(100, 150, 255)"/>
+          
+          <!-- Step 4: Image -->
+          <image x="790" y="40" width="120" height="120" href="images/step-4.png"/>
+          <text x="850" y="200" text-anchor="middle" fill="rgb(190, 205, 255)" font-size="14" font-weight="bold">Get insights</text>
+          <text x="850" y="220" text-anchor="middle" fill="rgb(150, 160, 200)" font-size="12">See scores & compare</text>
+          <text x="850" y="235" text-anchor="middle" fill="rgb(150, 160, 200)" font-size="12">candidates</text>
+        </svg>
+      </section>
+
+      <!-- STATS SECTION -->
+      <section class="title-1">
+        <div class="stats-section">
+          <!-- Empty but present for JavaScript -->
+        </div>
+      </section>
+
+      <!-- KEY FEATURES SECTION -->
+      <div class="grid">
+        <div class="UI-content">
+          <div class="Caption" style="border-bottom: 2px solid rgb(245, 246, 252);">
+            <p>Key Features</p>
+          </div>
+
+          <div class="button-group">
+            <button class="not-button">
+              <h2>Custom AI interviewer Per Role</h2>
+              <p>Describe your role, experience level, and key skills. AI instantly builds a unique interviewer tailored to your job description.</p>
+            </button>
+
+            <button class="not-button">
+              <h2>Live Scorecards & Rankings</h2>
+              <p>See candidate scores, rankings, and detailed analytics in real-time. Compare candidates side-by-side with instant insights.</p>
+            </button>
+
+            <button class="not-button">
+              <h2>Audio & video playback</h2>
+              <p>Watch and listen to candidate responses with timestamp markers. Jump to key moments and clip standout answers for sharing.</p>
+            </button>
+
+            <button class="not-button">
+              <h2>Bias-free scoring algorithm</h2>
+              <p>AI evaluates on skills and communication, not appearance or accent. Fair scoring that gives every candidate an equal chance.</p>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- BACK TO HOME SECTION (CENTERED) -->
+      <section class="back-section">
+        <a href="homepage.html" class="home-link">← Back to Home</a>
+      </section>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>

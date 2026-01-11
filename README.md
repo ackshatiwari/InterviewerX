@@ -1,4 +1,4 @@
-# AI Interview & Candidate Scoring Platform
+# InterviewX
 
 ## Overview – What This Project Does
 
@@ -46,14 +46,13 @@ Here are the steps required to set this project up on your local machine.
 3. Type ```npm run dev``` in the terminal, and it should state: ```Server running on port (your port)```
 4. While creating a Supabase database table, it must follow this format (The column values are sample values, and are not necessary)
 
-```
-Table Name: Interview_Bots
-RLS: Disabled(for testing purposes)
+**Table Name**: Interview_Bots
+
+**RLS**: Disabled(for testing purposes)
 
 | id | created_at | jobTitle | seniorityLevel | topicsWeightage | evaluationCriteria | organization | skills | interview_code |
 |----|------------|----------|----------------|-----------------|--------------------|--------------|--------|----------------|
 | 1  | 2026-01-05 00:21:34.193079+00 | Software Engineer | Junior | JavaScript:40%, DSA:30%, System Design:30% | Problem-solving, Code quality, Communication | Acme Corp | JavaScript, Node.js, SQL | INT-ABC123 |
 | 2  | 2026-01-08 00:14:21.103079+00 | Senior Architect | Senior | APIs:35%, Databases:35%, Architecture:30% | Scalability, Optimization, Design decisions | TechLabs | Node.js, PostgreSQL, Redis | INT-DEF456 |
 
-```
 

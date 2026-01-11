@@ -200,7 +200,8 @@ app.post('/api/interview-session', async (req, res) => {
                 const questions = await generateInterviewQuestions(
                     bot.jobTitle || bot.job_title,
                     bot.jobDescription || `${bot.seniorityLevel} position at ${bot.organization}. Required skills: ${bot.skills}`,
-                    5
+                    5,
+                    bot.topicsWeightage || bot.topics_weightage
                 );
                 
                 res.json({ 

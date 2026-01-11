@@ -200,10 +200,13 @@ document.getElementById('submitAnswer').addEventListener('click', async () => {
     // Add answer to chat
     addMessageToChat('candidate', answer);
     
-    // Store answer
+    // Store answer with question details
+    const currentQuestion = currentQuestions[currentQuestionIndex];
     allAnswers.push({
-        question: currentQuestions[currentQuestionIndex].question,
-        answer: answer
+        question: currentQuestion.question,
+        answer: answer,
+        topic: currentQuestion.topic || 'general',
+        points: currentQuestion.points || (100 / currentQuestions.length)
     });
     
     // Evaluate the answer
@@ -302,14 +305,31 @@ function addMessageToChat(sender, message) {
 
 // Calculate final score
 function calculateFinalScore() {
-    let totalScore = 0;
+    let totalPointsEarned = 0;
+    let totalPointsPossible = 0;
+    let topicScores = {};
     let allStrengths = [];
     let allImprovements = [];
     let feedbackTexts = [];
     
     allAnswers.forEach(item => {
+        totalPointsPossible += item.points || 0;
+        
         if (item.evaluation) {
-            totalScore += item.evaluation.score || 0;
+            // Calculate points earned for this question
+            const pointsEarned = item.evaluation.pointsEarned || 
+                ((item.evaluation.score / 100) * item.points);
+            totalPointsEarned += pointsEarned;
+            
+            // Track scores by topic
+            if (item.topic) {
+                if (!topicScores[item.topic]) {
+                    topicScores[item.topic] = { earned: 0, possible: 0 };
+                }
+                topicScores[item.topic].earned += pointsEarned;
+                topicScores[item.topic].possible += item.points;
+            }
+            
             if (item.evaluation.strengths) {
                 allStrengths = allStrengths.concat(item.evaluation.strengths);
             }
@@ -322,14 +342,17 @@ function calculateFinalScore() {
         }
     });
     
-    const averageScore = Math.round(totalScore / allAnswers.length);
+    // Calculate final score based on points
+    const finalScore = totalPointsPossible > 0 ? 
+        Math.round((totalPointsEarned / totalPointsPossible) * 100) : 
+        Math.round(totalPointsEarned);
     
     // Hide interview chat and show score
     document.getElementById('interviewChat').style.display = 'none';
     document.getElementById('scoreDisplay').style.display = 'block';
     
     // Display final score
-    document.getElementById('finalScore').textContent = averageScore;
+    document.getElementById('finalScore').textContent = finalScore;
     
     // Display strengths
     const strengthsList = document.getElementById('strengths');
@@ -351,7 +374,7 @@ function calculateFinalScore() {
     document.getElementById('overallFeedback').textContent = feedbackTexts.join(' ');
     
     // Announce completion
-    speakText(`Interview complete! Your overall score is ${averageScore} out of 100. Thank you for participating.`);
+    speakText(`Interview complete! Your overall score is ${finalScore} out of 100. Thank you for participating.`);
 }
 
 // Test microphone

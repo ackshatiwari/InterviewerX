@@ -5,33 +5,339 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InterviewerX - Start Interview</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+        }
+        
+        body {
+            min-height: 100vh;
+            background-image: url("images/blue.jpg");
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        .header {
+            padding: 16px 32px;
+            background: rgb(3, 4, 85);
+            color: rgb(175, 194, 255);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .logo {
+            width: 150px;
+            height: 50px;
+            object-fit: contain;
+        }
+        
+        .title-block {
+            display: flex;
+            flex-direction: column;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .title {
+            font-size: 28px;
+            line-height: 1.1;
+            margin: 0;
+        }
+        
+        .subtitle {
+            font-size: 14px;
+            line-height: 1.3;
+            margin: 2px 0 0;
+            color: rgb(190, 205, 255);
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        
+        .interview-section {
+            background: rgba(20, 25, 60, 0.95);
+            border-radius: 8px;
+            padding: 30px;
+            margin: 20px 0;
+            color: rgb(245, 246, 252);
+            box-shadow: 5px 5px 0px rgba(24, 31, 56, 0.8);
+        }
+        
+        h1 {
+            color: rgb(190, 205, 255);
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            color: rgb(175, 194, 255);
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 20px;
+        }
+        
+        #interviewCode {
+            width: 300px;
+            padding: 15px;
+            font-size: 24px;
+            text-align: center;
+            background: rgb(25, 45, 109);
+            color: #fff;
+            border: 2px solid rgb(100, 150, 255);
+            border-radius: 4px;
+            margin: 20px auto;
+            display: block;
+            font-family: 'Roboto Mono', monospace;
+        }
+        
+        button {
+            background-color: rgb(25, 45, 109);
+            color: rgb(252, 252, 255);
+            border: none;
+            padding: 15px 30px;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: 'Orbitron', sans-serif;
+            box-shadow: 5px 5px 0px rgba(24, 31, 56, 0.8);
+            transition: opacity 0.15s;
+            margin: 10px;
+        }
+        
+        button:hover {
+            opacity: 0.8;
+            border: 2px solid rgb(124, 131, 146);
+        }
+        
+        .error-message {
+            color: #ff6b6b;
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        .chat-messages {
+            height: 400px;
+            overflow-y: auto;
+            background: rgba(25, 45, 109, 0.5);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid rgb(100, 150, 255);
+        }
+        
+        .message {
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 4px;
+            animation: fadeUp 0.3s ease-out;
+        }
+        
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .interviewer-message {
+            background: rgba(3, 4, 85, 0.7);
+            border-left: 3px solid rgb(100, 150, 255);
+        }
+        
+        .candidate-message {
+            background: rgba(25, 45, 109, 0.7);
+            border-left: 3px solid rgb(175, 194, 255);
+        }
+        
+        .message-sender {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: rgb(190, 205, 255);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 12px;
+        }
+        
+        .message-content {
+            color: rgb(245, 246, 252);
+            line-height: 1.5;
+        }
+        
+        .record-btn {
+            background: rgb(201, 206, 223);
+            color: rgb(20, 25, 60);
+            padding: 20px 40px;
+            font-size: 18px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px auto;
+            font-weight: 700;
+        }
+        
+        .record-btn.recording {
+            background: rgb(100, 150, 255);
+            color: white;
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .audio-level {
+            height: 20px;
+            background: rgb(100, 150, 255);
+            border-radius: 4px;
+            transition: width 0.1s;
+            width: 0;
+            margin: 10px 0;
+        }
+        
+        .transcription {
+            background: rgba(25, 45, 109, 0.5);
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+            min-height: 50px;
+            border: 1px solid rgb(100, 150, 255);
+            color: rgb(245, 246, 252);
+        }
+        
+        .score-card {
+            background: rgba(25, 45, 109, 0.8);
+            padding: 30px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        #finalScore {
+            color: rgb(100, 150, 255);
+            font-size: 48px;
+            font-family: 'Roboto Mono', monospace;
+            font-weight: bold;
+        }
+        
+        .current-question {
+            background: rgba(25, 45, 109, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid rgb(100, 150, 255);
+        }
+        
+        .current-question h3 {
+            color: rgb(175, 194, 255);
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 10px;
+        }
+        
+        .current-question p {
+            color: rgb(245, 246, 252);
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        
+        #strengths li, #improvements li {
+            color: rgb(245, 246, 252);
+            margin: 10px 0;
+            list-style-type: none;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        #strengths li:before {
+            content: "✓ ";
+            color: rgb(100, 150, 255);
+            position: absolute;
+            left: 0;
+        }
+        
+        #improvements li:before {
+            content: "→ ";
+            color: rgb(175, 194, 255);
+            position: absolute;
+            left: 0;
+        }
+        
+        .upload-section, .audio-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(25, 45, 109, 0.3);
+            border-radius: 8px;
+        }
+        
+        input[type="file"] {
+            background: rgb(25, 45, 109);
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            width: 100%;
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
+    <div class="header">
+        <div class="brand">
+            <img src="images/logo.png" alt="Logo" class="logo">
+            <div class="title-block">
+                <h1 class="title">InterviewX</h1>
+                <p class="subtitle">AI-powered voice interview</p>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <h1>Welcome to Your Interview</h1>
         
         <div id="codeEntry" class="interview-section">
             <h2>Enter Your Interview Code</h2>
-            <p>Please enter the 6-digit code provided by your recruiter</p>
+            <p style="text-align: center; color: rgb(175, 194, 255); margin-bottom: 20px;">Please enter the 6-digit code provided by your recruiter</p>
             <input type="text" id="interviewCode" maxlength="6" pattern="[0-9]{6}" placeholder="000000">
-            <button id="startInterview">Start Interview</button>
+            <button id="startInterview" style="display: block; margin: 20px auto;">Start Interview</button>
             <div id="errorMessage" class="error-message"></div>
         </div>
+
         <div id="interviewInterface" class="interview-section" style="display: none;">
             <div id="botInfo">
                 <h2 id="jobTitle"></h2>
-                <p id="roleInfo"></p>
+                <p id="roleInfo" style="color: rgb(175, 194, 255); margin-bottom: 20px;"></p>
             </div>
 
             <div id="resumeUpload" class="upload-section">
-                <h3>Upload Your Resume</h3>
+                <h3 style="color: rgb(175, 194, 255); font-family: 'Orbitron', sans-serif;">Upload Your Resume</h3>
                 <input type="file" id="resumeFile" accept=".pdf,.doc,.docx">
                 <button id="uploadResume">Upload Resume</button>
             </div>
 
             <div id="audioControls" class="audio-section">
-                <h3>Audio Test</h3>
+                <h3 style="color: rgb(175, 194, 255); font-family: 'Orbitron', sans-serif;">Audio Test</h3>
                 <button id="testMicrophone">Test Microphone</button>
                 <div id="audioLevel" class="audio-level"></div>
             </div>
@@ -40,27 +346,28 @@
                 <div id="chatMessages" class="chat-messages"></div>
                 <div id="currentQuestion" class="current-question"></div>
                 
-                <div class="recording-controls">
+                <div class="recording-controls" style="text-align: center;">
                     <button id="recordButton" class="record-btn">
-                            Hold to Record
+                        Hold to Record
                     </button>
-                    <div id="recordingStatus" class="recording-status"></div>
+                    <div id="recordingStatus" class="recording-status" style="color: rgb(175, 194, 255); margin: 10px;"></div>
                 </div>
                 
-                <button id="submitAnswer" style="display: none;">Submit Answer</button>
+                <button id="submitAnswer" style="display: none; margin: 20px auto;">Submit Answer</button>
                 <div id="transcription" class="transcription"></div>
             </div>
 
             <div id="scoreDisplay" class="score-section" style="display: none;">
-                <h2>Interview Complete!</h2>
+                <h2 style="color: rgb(175, 194, 255); font-family: 'Orbitron', sans-serif; text-align: center;">Interview Complete!</h2>
                 <div class="score-card">
-                    <h3>Your Score: <span id="finalScore"></span>/100</h3>
-                    <div id="feedbackSection">
-                        <h4>Strengths:</h4>
+                    <h3 style="color: rgb(190, 205, 255); font-family: 'Orbitron', sans-serif;">Your Score:</h3>
+                    <div id="finalScore"></div>
+                    <div id="feedbackSection" style="text-align: left; margin-top: 30px;">
+                        <h4 style="color: rgb(175, 194, 255); font-family: 'Orbitron', sans-serif;">Strengths:</h4>
                         <ul id="strengths"></ul>
-                        <h4>Areas for Improvement:</h4>
+                        <h4 style="color: rgb(175, 194, 255); font-family: 'Orbitron', sans-serif; margin-top: 20px;">Areas for Improvement:</h4>
                         <ul id="improvements"></ul>
-                        <p id="overallFeedback"></p>
+                        <p id="overallFeedback" style="color: rgb(245, 246, 252); margin-top: 20px; line-height: 1.5;"></p>
                     </div>
                 </div>
             </div>
